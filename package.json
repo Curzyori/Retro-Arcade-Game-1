@@ -5,7 +5,10 @@
   "main": "interface/api/server.js",
   "scripts": {
     "start": "node interface/api/server.js",
-    "dev": "nodemon interface/api/server.js"
+    "dev:backend": "nodemon interface/api/server.js",
+    "dev:frontend": "cd interface/web && npm run dev",
+    "dev": "concurrently \"npm run dev:backend\" \"npm run dev:frontend\"",
+    "build": "cd interface/web && npm run build"
   },
   "dependencies": {
     "better-sqlite3": "^11.5.0",
@@ -18,6 +21,7 @@
     "zod": "^3.23.8"
   },
   "devDependencies": {
-    "nodemon": "^3.1.7"
+    "nodemon": "^3.1.7",
+    "concurrently": "^9.1.0"
   }
 }
