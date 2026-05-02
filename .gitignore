@@ -1,0 +1,7 @@
+node_modules/
+.env
+arcade.db
+error.log
+combined.log
+interface/web/dist/
+interface/web/node_modules/
