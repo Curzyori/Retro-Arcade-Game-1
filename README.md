@@ -1,11 +1,11 @@
-# Zafkiel Arcade: Emperor of Time 🕒🌑
+# Zafkiel Arcade 1: Emperor of Time 🕒🌑
 
 ![Zafkiel Arcade Header](assets/header.png)
 
-[![Version](https://img.shields.io/badge/version-1.0.0-crimson.svg)](https://github.com/Curzyori/Retro-Arcade-Game-1)
+[![Version](https://img.shields.io/badge/version-1.0.0-crimson.svg)](https://github.com/Curzyori/Zafkiel-Arcade-1)
 [![License](https://img.shields.io/badge/license-MIT-gold.svg)](LICENSE)
-[![Platform](https://img.shields.io/badge/platform-Web%20%7C%20Linux-black.svg)](https://github.com/Curzyori/Retro-Arcade-Game-1)
-[![Stack](https://img.shields.io/badge/stack-React%20%7C%20Express%20%7C%20SQLite-blue.svg)](https://github.com/Curzyori/Retro-Arcade-Game-1)
+[![Platform](https://img.shields.io/badge/platform-Web%20%7C%20Linux-black.svg)](https://github.com/Curzyori/Zafkiel-Arcade-1)
+[![Stack](https://img.shields.io/badge/stack-React%20%7C%20Express%20%7C%20SQLite-blue.svg)](https://github.com/Curzyori/Zafkiel-Arcade-1)
 
 **Zafkiel Arcade** is a high-stakes, time-manipulating survival game inspired by the aesthetic of *Kurumi Tokisaki*. Built with a robust **Modular Monolith** architecture, it combines real-time game logic with secure backend persistence and a stunning Gothic-Crimson interface.
 
@@ -39,7 +39,7 @@ The project is designed with scalability and security in mind, suitable for a pr
 
 ### 📁 Directory Structure
 ```text
-Retro_Arcade_Game-1/
+Zafkiel-Arcade-1/
 ├── core/
 │   └── engine.js          # Centralized game & time-manipulation logic
 ├── interface/
@@ -65,8 +65,8 @@ Retro_Arcade_Game-1/
 
 1. **Clone & Install Dependencies**
    ```bash
-   git clone https://github.com/Curzyori/Retro_Arcade_Game-1.git
-   cd Retro_Arcade_Game-1
+   git clone https://github.com/Curzyori/Zafkiel-Arcade-1.git
+   cd Zafkiel-Arcade-1
    npm install
    ```
 

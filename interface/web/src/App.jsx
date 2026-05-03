@@ -262,7 +262,7 @@ function App() {
       <div className="w-full px-8 py-4 flex justify-between items-center z-30 bg-black/80 border-b border-zafkiel-crimson/20 backdrop-blur-md">
         <div className="flex items-center gap-6">
           <div className="flex flex-col">
-            <h1 className="text-4xl font-black text-zafkiel-crimsonBright tracking-tighter uppercase drop-shadow-[0_0_8px_rgba(220,20,60,0.6)]">Zafkiel</h1>
+            <h1 className="text-4xl font-black text-zafkiel-crimsonBright tracking-tighter uppercase drop-shadow-[0_0_8px_rgba(220,20,60,0.6)]">Zafkiel Arcade 1</h1>
             <span className="text-[10px] text-zafkiel-gold/50 tracking-[0.5em] font-roman -mt-1 uppercase">Emperor of Time</span>
           </div>
           <div className="h-10 w-[1px] bg-white/10 mx-4"></div>

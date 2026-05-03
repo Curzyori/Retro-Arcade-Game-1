@@ -1,21 +1,35 @@
+// Core Game Logic for Zafkiel Arcade
 const db = require('./database');
-const logger = require('../utils/logger');
 
 class ZafkielEngine {
-  constructor() {
-    this.status = 'active';
+  initializePlayer(playerId) {
+    let player = db.getPlayer(playerId);
+    if (!player) {
+      player = {
+        id: playerId,
+        timePower: 100, // Zafkiel time essence
+        score: 0,
+        lastAction: null
+      };
+      db.savePlayer(player.id, player.timePower, player.score, player.lastAction);
+    }
+    return player;
   }
 
-  async manipulateTime(playerId, action, shiftAmount) {
+  async manipulateTime(playerId, action, amount) {
+    const player = this.initializePlayer(playerId);
+    
+    // Simulate time logic
     return new Promise((resolve) => {
       setTimeout(() => {
-        const player = this.getPlayerState(playerId) || { id: playerId, timePower: 100, score: 0 };
-        
-        // Logic for different actions
-        if (action === 'backward') player.timePower += shiftAmount;
-        if (action === 'forward') player.timePower -= shiftAmount;
-        
-        player.score += Math.abs(shiftAmount) * 0.1;
+        if (action === 'forward' || action === 'accelerate') {
+          player.timePower -= amount * 0.1;
+          player.score += amount;
+        } else if (action === 'backward' || action === 'freeze') {
+          player.timePower -= amount * 0.5;
+        }
+
+        if (player.timePower < 0) player.timePower = 0;
         player.lastAction = action;
         
         // Persist to database

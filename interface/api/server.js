@@ -55,7 +55,7 @@ app.get(/.*/, (req, res) => {
 app.use(errorHandler);
 
 const server = app.listen(PORT, () => {
-  logger.info(`Zafkiel Arcade backend running on port ${PORT}`);
+  logger.info(`Zafkiel Arcade 1 backend running on port ${PORT}`);
 });
 
 // Graceful Shutdown
