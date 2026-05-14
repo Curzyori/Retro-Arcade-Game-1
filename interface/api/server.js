@@ -6,11 +6,11 @@ const rateLimit = require('express-rate-limit');
 const logger = require('../../utils/logger');
 const { errorHandler } = require('../../utils/errors');
 const apiRoutes = require('./routes');
-
 const path = require('path');
 
 const app = express();
 const PORT = process.env.PORT || 3000;
+const isProduction = process.env.NODE_ENV === 'production' || process.env.VERCEL === '1';
 
 // Security Middleware (Zafkiel's Wall)
 app.use(helmet({
@@ -44,32 +44,33 @@ app.use((req, res, next) => {
 app.use('/api', apiRoutes);
 
 // Serve static frontend files
-app.use(express.static(path.join(__dirname, '../web/dist')));
+const distPath = path.join(__dirname, '../web/dist');
+app.use(express.static(distPath));
 
 // Catch-all route to serve frontend index.html
 app.get(/.*/, (req, res) => {
-  res.sendFile(path.join(__dirname, '../web/dist/index.html'));
+  // If request is for /api, don't serve index.html (should have been handled above)
+  if (req.url.startsWith('/api')) {
+    return res.status(404).json({ success: false, message: 'API endpoint not found' });
+  }
+  
+  const indexPath = path.join(distPath, 'index.html');
+  res.sendFile(indexPath, (err) => {
+    if (err) {
+      res.status(404).send("Frontend build not found. Please ensure 'npm run build' was executed.");
+    }
+  });
 });
 
 // Global Error Handler
 app.use(errorHandler);
 
-const server = app.listen(PORT, () => {
-  logger.info(`Zafkiel Arcade 1 backend running on port ${PORT}`);
-});
-
-// Graceful Shutdown
-process.on('SIGTERM', () => {
-  logger.info('SIGTERM signal received: closing HTTP server');
-  server.close(() => {
-    logger.info('HTTP server closed');
+// Only listen if not running as a serverless function (Vercel)
+if (!isProduction) {
+  app.listen(PORT, () => {
+    logger.info(`Zafkiel Arcade 1 backend running on port ${PORT}`);
   });
-});
+}
 
-process.on('SIGINT', () => {
-  logger.info('SIGINT signal received: closing HTTP server');
-  server.close(() => {
-    logger.info('HTTP server closed');
-    process.exit(0);
-  });
-});
+// Export the app for Vercel
+module.exports = app;
