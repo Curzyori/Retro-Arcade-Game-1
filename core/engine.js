@@ -2,8 +2,8 @@
 const db = require('./database');
 
 class ZafkielEngine {
-  initializePlayer(playerId) {
-    let player = db.getPlayer(playerId);
+  async initializePlayer(playerId) {
+    let player = await db.getPlayer(playerId);
     if (!player) {
       player = {
         id: playerId,
@@ -11,17 +11,17 @@ class ZafkielEngine {
         score: 0,
         lastAction: null
       };
-      db.savePlayer(player.id, player.timePower, player.score, player.lastAction);
+      await db.savePlayer(player.id, player.timePower, player.score, player.lastAction);
     }
     return player;
   }
 
   async manipulateTime(playerId, action, amount) {
-    const player = this.initializePlayer(playerId);
+    const player = await this.initializePlayer(playerId);
     
     // Simulate time logic
     return new Promise((resolve) => {
-      setTimeout(() => {
+      setTimeout(async () => {
         if (action === 'forward' || action === 'accelerate') {
           player.timePower -= amount * 0.1;
           player.score += amount;
@@ -33,21 +33,21 @@ class ZafkielEngine {
         player.lastAction = action;
         
         // Persist to database
-        db.savePlayer(player.id, player.timePower, player.score, player.lastAction);
+        await db.savePlayer(player.id, player.timePower, player.score, player.lastAction);
         const timestamp = Date.now();
-        db.logAction(player.id, action, timestamp);
+        await db.logAction(player.id, action, timestamp);
         
         resolve({ player, action, timestamp });
       }, 50); // slight async delay for effect
     });
   }
 
-  getPlayerState(playerId) {
-    return db.getPlayer(playerId) || null;
+  async getPlayerState(playerId) {
+    return await db.getPlayer(playerId) || null;
   }
 
-  getPlayerLogs(playerId) {
-    return db.getRecentLogs(playerId) || [];
+  async getPlayerLogs(playerId) {
+    return await db.getRecentLogs(playerId) || [];
   }
 }
 

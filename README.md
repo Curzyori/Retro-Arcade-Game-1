@@ -33,7 +33,7 @@ The project is designed with scalability and security in mind, suitable for a pr
 ### 🏗️ Core Stack
 - **Frontend**: Vite + React with **Framer Motion** for liquid-smooth animations and **Lucide React** for iconography.
 - **Backend**: **Express.js v5** (Modular Monolith) with structured middleware.
-- **Database**: **SQLite** via `better-sqlite3` for high-performance, low-latency persistence.
+- **Database**: **PostgreSQL** via **Supabase** for cloud persistence and Vercel compatibility.
 - **Validation**: **Zero-Trust** architecture using **Zod** for schema validation on every API endpoint.
 - **Security**: Implementation of `express-rate-limit` and custom CORS policies to prevent exploitation.
 

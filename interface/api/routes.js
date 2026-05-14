@@ -28,13 +28,13 @@ router.post('/time-shift', asyncWrapper(async (req, res) => {
 
 router.get('/player/:id', asyncWrapper(async (req, res) => {
   const playerId = req.params.id;
-  const state = engine.getPlayerState(playerId);
+  const state = await engine.getPlayerState(playerId);
   
   if (!state) {
     return res.status(404).json({ success: false, message: 'Player not found' });
   }
 
-  const logs = engine.getPlayerLogs(playerId);
+  const logs = await engine.getPlayerLogs(playerId);
 
   res.json({ success: true, data: { ...state, logs } });
 }));

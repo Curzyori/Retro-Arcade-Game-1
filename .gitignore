@@ -1,7 +1,27 @@
+# Dependencies
 node_modules/
-.env
-arcade.db
-error.log
-combined.log
-interface/web/dist/
 interface/web/node_modules/
+
+# Environment Variables (Sangat Penting untuk Keamanan)
+.env
+.env.local
+.env.*.local
+
+# Database & Logs (SQLite lama & Log file)
+arcade.db
+arcade.db-journal
+*.log
+npm-debug.log*
+
+# Production Build (Vite/React)
+interface/web/dist/
+dist/
+
+# Vercel & IDE
+.vercel
+.vscode/
+.idea/
+
+# System Files
+.DS_Store
+Thumbs.db

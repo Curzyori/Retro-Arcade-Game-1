@@ -10,8 +10,7 @@ RUN npm run build
 FROM node:22-alpine
 WORKDIR /app
 
-# Install build tools for better-sqlite3
-RUN apk add --no-cache python3 make g++ sqlite-dev
+# No native build tools needed for Supabase client
 
 # Copy package.json and install production dependencies
 COPY package*.json ./
